@@ -1,0 +1,182 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  font-family: inherit;
+}
+
+div.site-topper{
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 500;
+}
+
+svg{
+  height: inherit;
+  width: inherit;
+}
+
+i{
+  height: 1rem;
+  cursor: pointer;
+  display: inline-block;
+  z-index: 1;
+}
+
+i svg{
+  z-index: -5;
+}
+
+body{
+  min-height: 100vh;
+}
+
+div.big-wrapper{
+  min-height: 100vh;
+}
+
+div.after-site-topper{
+  height: 2rem;
+}
+
+div.before-site-footer{
+  height: 2.5rem;
+}
+
+footer{
+  text-align: center;
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  width: 100%;
+  height: 2.5rem;
+  display: flex;
+}
+
+footer > div.site-footer{
+  width: 100%;
+  display: flex;
+  background-color: grey;
+  font-size: .8rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+footer > div.site-footer a#foot-contact{
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+footer > div.site-footer .footer-svgs{
+  width: 100%;
+  height: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+footer > div.site-footer .footer-svgs.show{
+  overflow: visible;
+}
+
+footer > div.site-footer .footer-svgs .inside-foot-svgs{
+  padding: .2rem;
+  background-color: rgb(58, 58, 58);
+  position: absolute;
+  bottom: 100%;
+  display: none;
+  flex-wrap: wrap;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+  fill: aquamarine;
+  border-radius: .7rem;
+}
+
+footer > div.site-footer .footer-svgs.show .inside-foot-svgs{
+  display: flex;
+}
+
+footer > div.site-footer .footer-svgs .inside-foot-svgs::after{
+  content: " ";
+  border: 7px solid rgb(58, 58, 58);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -7px;
+  border-color: transparent;
+  border-top-color: rgb(58, 58, 58);
+}
+
+footer > div.site-footer .footer-svgs a{
+  text-decoration: none;
+  padding: .3rem;
+}
+
+@media screen and (max-width: 350px) {
+  
+  div.before-site-footer{
+    height: 3rem;
+  }
+
+  footer{
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    width: 100%;
+    height: 3rem;
+    display: flex;
+  }
+
+}
+
+@media screen and (max-width: 179px) {
+  
+  div.before-site-footer{
+    height: 4rem;
+  }
+
+  footer{
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    width: 100%;
+    height: 4rem;
+    display: flex;
+  }
+
+}
+
+@media screen and (max-width: 123px) {
+  
+  div.before-site-footer{
+    height: 5rem;
+  }
+
+  footer{
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    width: 100%;
+    height: 5rem;
+    display: flex;
+  }
+
+}
+
+@media screen and (max-width: 94px) {
+  
+  div.before-site-footer{
+    height: 10rem;
+  }
+
+  footer{
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    width: 100%;
+    height: 10rem;
+    display: flex;
+  }
+
+}
