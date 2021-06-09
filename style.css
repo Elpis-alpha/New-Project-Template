@@ -21,7 +21,7 @@ svg{
 i{
   height: 1rem;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
   z-index: 1;
 }
 
