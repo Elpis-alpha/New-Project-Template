@@ -1,0 +1,6 @@
+1. Add notification bar
+2. Add mini message with SVG
+3. Add small message
+4. Add message
+5. Add Xmessage
+6. Add Form Message
