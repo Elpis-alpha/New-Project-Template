@@ -2092,7 +2092,9 @@ const App = (function (UICtrl, APICtrl, GlobalCtrl, SpecialCtrl, WebSocketCtrl, 
     // Handle Scroll Animations
     const animateScrollItems = () => {
 
-      UICtrl.findElements(".animate-me").forEach(item => {
+      const theElements = UICtrl.findElements(".animate-me")
+
+      theElements.forEach(item => {
 
         if (item.getBoundingClientRect().y - window.innerHeight < 0) {
 
@@ -2108,9 +2110,9 @@ const App = (function (UICtrl, APICtrl, GlobalCtrl, SpecialCtrl, WebSocketCtrl, 
 
           })
 
-          console.log(clas);
-
           UICtrl.addClass(item, clas[0].slice(8))
+
+          UICtrl.removeClass(item, 'animate-me')
 
         }
 
@@ -2120,7 +2122,7 @@ const App = (function (UICtrl, APICtrl, GlobalCtrl, SpecialCtrl, WebSocketCtrl, 
 
       window.addEventListener('scroll', e => {
 
-        UICtrl.findElements(".animate-me").forEach(item => {
+        theElements.forEach(item => {
 
           if (item.getBoundingClientRect().y - window.innerHeight < 0) {
 
@@ -2136,9 +2138,9 @@ const App = (function (UICtrl, APICtrl, GlobalCtrl, SpecialCtrl, WebSocketCtrl, 
 
             })
 
-            console.log(clas);
-
             UICtrl.addClass(item, clas[0].slice(8))
+
+            UICtrl.removeClass(item, 'animate-me')
 
           }
 

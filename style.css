@@ -3,6 +3,86 @@
   src: url(poor_richard.ttf);
 }
 
+@media screen and (max-width: 800px) {
+  
+  html{
+    font-size: 14px;
+  }
+
+}
+
+@media screen and (max-width: 700px) {
+  
+  html{
+    font-size: 13px;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  
+  html{
+    font-size: 12px;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  
+  html{
+    font-size: 11px;
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+  
+  html{
+    font-size: 10px;
+  }
+
+}
+
+@media screen and (max-width: 300px) {
+  
+  html{
+    font-size: 8px;
+  }
+
+}
+
+@media screen and (max-width: 200px) {
+  
+  html{
+    font-size: 5px;
+  }
+
+}
+
+@media screen and (max-width: 100px) {
+  
+  html{
+    font-size: 4px;
+  }
+
+}
+
+@media screen and (max-width: 80px) {
+  
+  html{
+    font-size: 3px;
+  }
+
+}
+
+@media screen and (max-width: 50px) {
+  
+  html{
+    font-size: 2px;
+  }
+
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -340,6 +420,18 @@ footer > div.site-footer .footer-svgs a{
   animation: scroll-tiny-large 1s 1;
 }
 
+.scroll-tiny-large.animate-me{
+  transform: scale(0)
+}
+
+.scroll-slide-in-left.animate-me{
+  transform: translateX(-100%)
+}
+
+.scroll-slide-in-right.animate-me{
+  transform: translateX(100%)
+}
+
 /* Tempoary Content */
 
 div.main-content, main{
@@ -361,7 +453,7 @@ div.test-block img{
 div.test-block .caption{
   position: absolute;
   bottom: 10%;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   left: 1.88rem;
   color: white;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -377,7 +469,9 @@ div.test-block .side div{
   width: 42%;
   padding: 3%;
   margin: 5%;
-  box-shadow: 0 0 3px 1px black;
+  /* max-height: 6.3rem; */
+  overflow: hidden;
+  box-shadow: 0 0 5px .5px black;
   border-radius: 1rem;
   transition: background-color .5s, box-shadow .5s;
 }
