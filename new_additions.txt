@@ -1,2 +1,2 @@
-1. Add notification bar
-2. Add alarm bell that jingles
+2. Add a chat bot
+3. Add animations on scroll

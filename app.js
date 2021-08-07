@@ -236,7 +236,7 @@ const TimeCtrl = (function () {
     return months.indexOf(month)
   }
 
-  const makeCalender = function (date, monthE, yearE, bodyE) {
+  const makeCalender = function (date) {
 
     const today = new Date()
 
@@ -258,23 +258,53 @@ const TimeCtrl = (function () {
 
     let countEnded = 'No';
 
-    let daysCount = 0;
+    let daysCount = 0; let piece
 
     const makeCalende = function (date, datetr) {
 
-      let calender = `
-        <tr>
-          <th>Sun</th>
-          <th>Mon</th>
-          <th>Tue</th>
-          <th>Wed</th>
-          <th>Thu</th>
-          <th>Fri</th>
-          <th>Sat</th>
-        </tr>
-  
-        <tr>
-        `
+      const tbody = document.createElement('tbody')
+
+      let trow = document.createElement('tr')
+
+      const makeTH = (list) => {
+
+        for (let i = 0; i < list.length; i++) {
+
+          const text = list[i];
+
+          const th = document.createElement('th')
+
+          th.appendChild(document.createTextNode(text))
+
+          trow.appendChild(th)
+
+        }
+
+      }
+
+      const makeTD = (text, clas) => {
+
+        const td = document.createElement('td')
+
+        td.appendChild(document.createTextNode(text))
+
+        if (clas != undefined) {
+
+          UICtrl.addClass(td, clas)
+
+        }
+
+        return td
+
+      }
+
+      makeTH(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'])
+
+      tbody.appendChild(trow)
+
+      let calender = ``
+
+      const row1 = document.createElement('tr')
 
       for (let j = 0; j < 7; j++) {
 
@@ -288,37 +318,29 @@ const TimeCtrl = (function () {
 
           if (daysCount === date) {
 
-            calender += `
-              <td class="active">${j + 1 - countStarted}</td>
-              `
+            row1.appendChild(makeTD(j + 1 - countStarted, 'active'))
 
           } else if (daysCount === datetr) {
 
-            calender += `
-              <td class="xactive">${j + 1 - countStarted}</td>
-              `
+            row1.appendChild(makeTD(j + 1 - countStarted, 'xactive'))
 
           } else {
 
-            calender += `
-              <td>${j + 1 - countStarted}</td>
-              `
+            row1.appendChild(makeTD(j + 1 - countStarted))
 
           }
 
         } else {
-          calender += `
-            <td class="clouded before">${prevMonth - firstDay + 1 + j}</td>
-            `
+
+          row1.appendChild(makeTD(prevMonth - firstDay + 1 + j, 'clouded before'))
+
         }
 
       }
 
-      calender += `
-        </tr>
-  
-        <tr>
-        `
+      tbody.appendChild(row1)
+
+      const row2 = document.createElement('tr')
 
       for (let j = 0; j < 7; j++) {
 
@@ -326,31 +348,23 @@ const TimeCtrl = (function () {
 
         if (daysCount === date) {
 
-          calender += `
-            <td class="active">${daysCount}</td>
-            `
+          row2.appendChild(makeTD(daysCount, 'active'))
 
         } else if (daysCount === datetr) {
 
-          calender += `
-            <td class="xactive">${daysCount}</td>
-            `
+          row2.appendChild(makeTD(daysCount, 'xactive'))
 
         } else {
 
-          calender += `
-            <td>${daysCount}</td>
-            `
+          row2.appendChild(makeTD(daysCount))
 
         }
 
       }
 
-      calender += `
-        </tr>
-  
-        <tr>
-        `
+      tbody.appendChild(row2)
+
+      const row3 = document.createElement('tr')
 
       for (let j = 0; j < 7; j++) {
 
@@ -358,31 +372,22 @@ const TimeCtrl = (function () {
 
         if (daysCount === date) {
 
-          calender += `
-            <td class="active">${daysCount}</td>
-            `
+          row3.appendChild(makeTD(daysCount, 'active'))
 
         } else if (daysCount === datetr) {
 
-          calender += `
-            <td class="xactive">${daysCount}</td>
-            `
+          row3.appendChild(makeTD(daysCount, 'xactive'))
 
         } else {
 
-          calender += `
-            <td>${daysCount}</td>
-            `
+          row3.appendChild(makeTD(daysCount))
 
         }
       }
 
-      calender += `
-        </tr>
-  
-        <tr>
-        `
+      tbody.appendChild(row3)
 
+      const row4 = document.createElement('tr')
 
       for (let j = 0; j < 7; j++) {
 
@@ -391,42 +396,32 @@ const TimeCtrl = (function () {
         if (daysCount > noOfDays) { countEnded = 'Yes' }
 
         if (countEnded === 'Yes') {
-          calender += `
-              <td class="clouded after">${daysCount - noOfDays}</td>
-            `
+
+          row4.appendChild(makeTD(daysCount - noOfDays, 'clouded after'))
+
         } else {
 
           if (daysCount === date) {
 
-            calender += `
-              <td class="active">${daysCount}</td>
-              `
+            row4.appendChild(makeTD(daysCount, 'active'))
 
           } else if (daysCount === datetr) {
 
-            calender += `
-              <td class="xactive">${daysCount}</td>
-              `
+            row4.appendChild(makeTD(daysCount, 'xactive'))
 
           } else {
 
-            calender += `
-              <td>${daysCount}</td>
-              `
+            row4.appendChild(makeTD(daysCount))
 
           }
         }
       }
 
-      calender += `
-        </tr>
-        `
+      tbody.appendChild(row4)
 
       if (daysCount < noOfDays) {
 
-        calender += `
-          <tr>
-          `
+        const row5 = document.createElement('tr')
 
         for (let j = 0; j < 7; j++) {
 
@@ -435,42 +430,34 @@ const TimeCtrl = (function () {
           if (daysCount > noOfDays) { countEnded = 'Yes' }
 
           if (countEnded === 'Yes') {
-            calender += `
-              <td class="clouded after">${daysCount - noOfDays}</td>
-            `
+
+            row5.appendChild(makeTD(daysCount - noOfDays, 'clouded after'))
+
           } else {
 
             if (daysCount === date) {
 
-              calender += `
-                <td class="active">${daysCount}</td>
-                `
+              row5.appendChild(makeTD(daysCount, 'active'))
 
             } else if (daysCount === datetr) {
 
-              calender += `
-                <td class="xactive">${daysCount}</td>
-                `
+              row5.appendChild(makeTD(daysCount, 'xactive'))
 
             } else {
 
-              calender += `
-                <td>${daysCount}</td>
-                `
+              row5.appendChild(makeTD(daysCount))
 
             }
           }
         }
 
-        calender += `
-          </tr>`
+        tbody.appendChild(row5)
+
       }
 
       if (daysCount < noOfDays) {
 
-        calender += `
-          <tr>
-          `
+        const row6 = document.createElement('tr')
 
         for (let j = 0; j < 7; j++) {
 
@@ -479,43 +466,34 @@ const TimeCtrl = (function () {
           if (daysCount > noOfDays) { countEnded = 'Yes' }
 
           if (countEnded === 'Yes') {
-            calender += `
-              <td class="clouded after">${daysCount - noOfDays}</td>
-            `
+
+            row5.appendChild(makeTD(daysCount - noOfDays, 'clouded after'))
+
           } else {
 
             if (daysCount === date) {
 
-              calender += `
-              <td class="active">${daysCount}</td>
-              `
+              row5.appendChild(makeTD(daysCount, 'active'))
 
             } else if (daysCount === datetr) {
 
-              calender += `
-              <td class="xactive">${daysCount}</td>
-              `
+              row5.appendChild(makeTD(daysCount, 'xactive'))
 
             } else {
 
-              calender += `
-              <td>${daysCount}</td>
-              `
+              row5.appendChild(makeTD(daysCount))
 
             }
           }
         }
 
-        calender += `
-          </tr>`
+        tbody.appendChild(row6)
+
       }
 
-      return calender
+      return tbody
+
     }
-
-    monthE.innerText = month
-
-    yearE.innerText = year
 
     if (
       `${date.getFullYear() + ' ' + date.getMonth()}`
@@ -523,12 +501,28 @@ const TimeCtrl = (function () {
       `${today.getFullYear() + ' ' + today.getMonth()}`
     ) {
 
-      bodyE.innerHTML = makeCalende(today.getDate(), date.getDate())
+      piece = makeCalende(today.getDate(), date.getDate())
 
     } else {
 
-      bodyE.innerHTML = makeCalende(0, date.getDate())
+      piece = makeCalende(0, date.getDate())
 
+    }
+
+    return {
+      month: month,
+      year: year,
+      table: piece,
+      info: [
+        "It makes a calender simple",
+        "The td with class xactive is the requested day",
+        "The td with class active is the current day",
+        "the td with class clouded is not in the current month",
+        "The td with class after is in the next month",
+        "The td with class before is in the previous month",
+        "The month gives the month and the year gives the year",
+        "Enjoy!"
+      ]
     }
 
   }
@@ -872,7 +866,7 @@ const TimeCtrl = (function () {
 
     addDateSuffix: (dateX) => addDateSuffix(dateX),
 
-    makeCalender: (date, monthE, yearE, bodyE) => makeCalender(date, monthE, yearE, bodyE)
+    makeCalender: (date) => makeCalender(date)
   }
 
 }())
@@ -1607,6 +1601,16 @@ const MessageCtrl = (function () {
 })()
 
 
+// Chatbot Controller
+const ChatbotCtrl = (function () {
+
+  return {
+
+  }
+
+})()
+
+
 // UI Controller
 const UICtrl = (function () {
 
@@ -1635,7 +1639,15 @@ const UICtrl = (function () {
   }
 
   const addClass = function (element, clas) {
-    element.classList.add(clas)
+
+    const classList = clas.split(" ")
+
+    classList.forEach(item => {
+
+      element.classList.add(item)
+
+    })
+
   }
 
   const toggleClass = function (element, clas) {
@@ -2062,34 +2074,6 @@ const App = (function (UICtrl, APICtrl, GlobalCtrl, SpecialCtrl, WebSocketCtrl, 
 
   const firstInit = function () {
 
-    UICtrl.findElement('#but-Aay').addEventListener('click', e => {
-
-      MessageCtrl.sendMiniMessage('Welcome Back', 1000)
-
-    })
-
-    UICtrl.findElement('#but-Bay').addEventListener('click', e => {
-
-      MessageCtrl.sendSmallMessage(`Never will I be welcome among the heartless monsters you surround yourself with`, 5000)
-
-    })
-
-    UICtrl.findElement('#but-Cay').addEventListener('click', e => {
-
-      MessageCtrl.sendNormalMessage(`Never will I be welcome among the heartless monsters you surround yourself with`, 5000)
-
-    })
-
-    UICtrl.findElement('#but-Day').addEventListener('click', e => {
-
-      let a = document.createElement('div')
-
-      a.appendChild(document.createTextNode('Never will I be welcome among the heartless monsters you surround yourself with'))
-
-      MessageCtrl.sendXMessage(a)
-
-    })
-
   }
 
   const loadInit = function () {
@@ -2105,9 +2089,72 @@ const App = (function (UICtrl, APICtrl, GlobalCtrl, SpecialCtrl, WebSocketCtrl, 
 
     })
 
+    // Handle Scroll Animations
+    const animateScrollItems = () => {
+
+      UICtrl.findElements(".animate-me").forEach(item => {
+
+        if (item.getBoundingClientRect().y - window.innerHeight < 0) {
+
+          let clas = Array.from(item.classList)
+
+          clas = clas.filter(a => {
+
+            if (/^animate-/.test(a) && !/e-me$/.test(a)) {
+
+              return a
+
+            }
+
+          })
+
+          console.log(clas);
+
+          UICtrl.addClass(item, clas[0].slice(8))
+
+        }
+
+        a = item
+
+      })
+
+      window.addEventListener('scroll', e => {
+
+        UICtrl.findElements(".animate-me").forEach(item => {
+
+          if (item.getBoundingClientRect().y - window.innerHeight < 0) {
+
+            let clas = Array.from(item.classList)
+
+            clas = clas.filter(a => {
+
+              if (/^animate-/.test(a) && !/e-me$/.test(a)) {
+
+                return a
+
+              }
+
+            })
+
+            console.log(clas);
+
+            UICtrl.addClass(item, clas[0].slice(8))
+
+          }
+
+          a = item
+
+        })
+
+      })
+
+    }
+
     // Set Footer Display
     UICtrl.toggleWithDocument(UICtrl.UIVars.contactButton,
       UICtrl.UIVars.footerSVGS, 'show')
+
+    animateScrollItems()
 
   }
 
