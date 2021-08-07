@@ -420,15 +420,15 @@ footer > div.site-footer .footer-svgs a{
   animation: scroll-tiny-large 1s 1;
 }
 
-.scroll-tiny-large.animate-me{
+.animate-scroll-tiny-large.animate-me{
   transform: scale(0)
 }
 
-.scroll-slide-in-left.animate-me{
+.animate-scroll-slide-in-left.animate-me{
   transform: translateX(-100%)
 }
 
-.scroll-slide-in-right.animate-me{
+.animate-scroll-slide-in-right.animate-me{
   transform: translateX(100%)
 }
 
