@@ -3,6 +3,11 @@
   src: url(poor_richard.ttf);
 }
 
+@font-face{
+  font-family: 'Franklin Gothic';
+  src: url(franklin_gothic.ttf);
+}
+
 @media screen and (max-width: 800px) {
   
   html{
@@ -456,7 +461,7 @@ div.test-block .caption{
   font-size: 1.1rem;
   left: 1.88rem;
   color: white;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Franklin Gothic';
   border-left: 4px solid green;
   padding-left: .5rem;
 }
