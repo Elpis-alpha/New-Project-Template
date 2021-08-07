@@ -2089,6 +2089,7 @@ const App = (function (UICtrl, APICtrl, GlobalCtrl, SpecialCtrl, WebSocketCtrl, 
 
     })
 
+
     // Handle Scroll Animations
     const animateScrollItems = () => {
 
@@ -2138,9 +2139,9 @@ const App = (function (UICtrl, APICtrl, GlobalCtrl, SpecialCtrl, WebSocketCtrl, 
 
             })
 
-            UICtrl.addClass(item, clas[0].slice(8))
+            // UICtrl.addClass(item, clas[0].slice(8))
 
-            UICtrl.removeClass(item, 'animate-me')
+            // UICtrl.removeClass(item, 'animate-me')
 
           }
 
