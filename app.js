@@ -1601,10 +1601,96 @@ const MessageCtrl = (function () {
 })()
 
 
-// Chatbot Controller
-const ChatbotCtrl = (function () {
+// Loaders Controller
+const LoaderCtrl = (function () {
+
+  let globalVar = []
+
+  const animateBar = (barsHolder, identifier) => {
+
+    const bars = Array.from(barsHolder.firstElementChild.firstElementChild.children)
+
+    let percent = 100 / (bars.length + 1)
+
+    const time = new Date().getTime()
+
+    bars.forEach((item, index) => {
+
+      let interval = 5000 - (percent * (index + 1) * 50)
+
+      const numb = globalVar.push([
+        'bar', identifier, time
+      ])
+
+      const a = setTimeout(() => {
+
+        item.style.marginLeft = '100%'
+
+      }, interval);
+
+      const b = setTimeout(() => {
+
+        item.style.marginLeft = '0%'
+
+        const c = setInterval(() => {
+
+          item.style.marginLeft = '100%'
+
+        }, 5000);
+
+        const d = setInterval(() => {
+
+          item.style.marginLeft = '0%'
+
+        }, 10000);
+
+        globalVar[numb - 1] = globalVar[numb - 1].concat(
+          a, b, c, d
+        )
+
+      }, interval + 5000);
+
+    })
+
+  }
+
+  const endBarAnimation = (identifier) => {
+
+    globalVar.forEach((item, index) => {
+
+      if (item[1] == identifier && item[0] == 'bar') {
+
+        let time = new Date().getTime() - item[2];
+
+        time = time > 12000 ? 0 : time + 10000
+
+        setTimeout(() => {
+
+          clearTimeout(globalVar[index][3])
+
+          clearTimeout(globalVar[index][4])
+
+          clearInterval(globalVar[index][5])
+
+          clearInterval(globalVar[index][6])
+
+          globalVar[index] = ""
+
+        }, time);
+
+      }
+
+    })
+
+  }
 
   return {
+
+    animateBar: (barsHolder, identifier) => animateBar(barsHolder, identifier),
+
+    endBarAnimation: (identifier) => endBarAnimation(identifier),
+
+    showGlobalVar: () => { console.log(globalVar); },
 
   }
 
@@ -2074,6 +2160,30 @@ const App = (function (UICtrl, APICtrl, GlobalCtrl, SpecialCtrl, WebSocketCtrl, 
 
   const firstInit = function () {
 
+    LoaderCtrl.animateBar(UICtrl.findElement("#first-loader"), 'tabbar')
+
+    LoaderCtrl.animateBar(UICtrl.findElement("#second-loader"), 'tabxbar')
+
+    LoaderCtrl.animateBar(UICtrl.findElement("#third-loader"), 'tabybar')
+
+    setTimeout(() => {
+
+      UICtrl.findElement("#first-loader").style.display = 'none'
+
+      UICtrl.findElement("#second-loader").style.display = 'none'
+
+      UICtrl.findElement("#third-loader").style.display = 'none'
+
+      UICtrl.findElement(".inner-content").style.display = 'block'
+
+      LoaderCtrl.endBarAnimation('tabbar')
+
+      LoaderCtrl.endBarAnimation('tabxbar')
+
+      LoaderCtrl.endBarAnimation('tabybar')
+
+    }, 13000);
+
   }
 
   const loadInit = function () {
@@ -2151,13 +2261,39 @@ const App = (function (UICtrl, APICtrl, GlobalCtrl, SpecialCtrl, WebSocketCtrl, 
 
       })
 
+
+      // How It Works!!!
+
+      // 1. Create the animation keyframe in the css file
+
+      // 2. The animation name must begin with scroll-
+
+      // 3. Create the animation style
+
+      // 4. The style class name must be the same as the keyframe name
+
+      // 5. Create another css animation style of {animate-(animation_name).animate-me}
+
+      // 6. This style is given the initial appearance of the animation
+
+      // 7. The element to be animated must have the class animate-me
+
+      // 8. The element to be animated must have the class animate-(animation_name)
+
+      // 9. The Javascript will handle the rest
+
+      // 10. Then enjoy your animation
     }
 
     // Set Footer Display
     UICtrl.toggleWithDocument(UICtrl.UIVars.contactButton,
       UICtrl.UIVars.footerSVGS, 'show')
 
-    animateScrollItems()
+    setTimeout(() => {
+
+      animateScrollItems()
+
+    }, 13000);
 
   }
 

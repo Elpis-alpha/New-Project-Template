@@ -1,2 +1,2 @@
 2. Add a chat bot
-3. Add animations on scroll
+3. Add loading animations
