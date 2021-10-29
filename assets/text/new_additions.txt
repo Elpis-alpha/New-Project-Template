@@ -1,0 +1,13 @@
+Functionalities
+
+1. Add a chat bot
+
+Projects
+
+1. Cake website with owner interface
+
+2. Elpis Games: Ludo, Tic tac toe, Guessing game...
+
+3. Shopping Website: Jumia Format
+
+4. Portfolio
